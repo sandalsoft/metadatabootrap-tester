@@ -1,0 +1,488 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: element_type
+  fields:
+    - name: element_count
+      type: Float
+    - name: id
+      type: Float
+    - name: plural_name
+      type: String
+    - name: plural_name_short
+      type: String
+    - name: singular_name
+      type: String
+    - name: singular_name_short
+      type: String
+    - name: squad_max_play
+      type: Float
+    - name: squad_max_select
+      type: Float
+    - name: squad_min_play
+      type: Float
+    - name: squad_min_select
+      type: Float
+    - name: squad_select
+      type: Float
+    - name: sub_positions_locked
+      type: "[Float!]"
+    - name: ui_shirt_specific
+      type: Boolean
+  graphql:
+    typeName: element_type
+    inputTypeName: element_type_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: fpl_api
+      dataConnectorObjectType: ElementType
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: element_type
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - element_count
+          - id
+          - plural_name
+          - plural_name_short
+          - singular_name
+          - singular_name_short
+          - squad_max_play
+          - squad_max_select
+          - squad_min_play
+          - squad_min_select
+          - squad_select
+          - sub_positions_locked
+          - ui_shirt_specific
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: chip_overrides
+  fields:
+    - name: element_types
+      type: "[element_type!]"
+    - name: pick_multiplier
+      type: String
+    - name: rules
+      type: json
+    - name: scoring
+      type: json
+  graphql:
+    typeName: chip_overrides
+    inputTypeName: chip_overrides_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: fpl_api
+      dataConnectorObjectType: Chip_overrides
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: chip_overrides
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - element_types
+          - pick_multiplier
+          - rules
+          - scoring
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: chip
+  fields:
+    - name: chip_type
+      type: transfer_team
+    - name: id
+      type: Float
+    - name: name
+      type: String
+    - name: number
+      type: Float
+    - name: overrides
+      type: chip_overrides
+    - name: start_event
+      type: Float
+    - name: stop_event
+      type: Float
+  graphql:
+    typeName: chip
+    inputTypeName: chip_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: fpl_api
+      dataConnectorObjectType: Chip
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: chip
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - chip_type
+          - id
+          - name
+          - number
+          - overrides
+          - start_event
+          - stop_event
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: array
+  fields:
+    - name: chip_name
+      type: String
+    - name: num_played
+      type: Float
+  graphql:
+    typeName: array
+    inputTypeName: array_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: fpl_api
+      dataConnectorObjectType: array
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: array
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - chip_name
+          - num_played
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: event_overrides
+  fields:
+    - name: element_types
+      type: "[json!]"
+    - name: pick_multiplier
+      type: String
+    - name: rules
+      type: json
+    - name: scoring
+      type: json
+  graphql:
+    typeName: event_overrides
+    inputTypeName: event_overrides_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: fpl_api
+      dataConnectorObjectType: Event_overrides
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: event_overrides
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - element_types
+          - pick_multiplier
+          - rules
+          - scoring
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: event_top_element_info
+  fields:
+    - name: id
+      type: Float
+    - name: points
+      type: Float
+  graphql:
+    typeName: event_top_element_info
+    inputTypeName: event_top_element_info_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: fpl_api
+      dataConnectorObjectType: Event_top_element_info
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: event_top_element_info
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - id
+          - points
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: event
+  fields:
+    - name: average_entry_score
+      type: Float
+    - name: can_enter
+      type: Boolean
+    - name: can_manage
+      type: Boolean
+    - name: chip_plays
+      type: "[array!]"
+    - name: cup_leagues_created
+      type: Boolean
+    - name: data_checked
+      type: Boolean
+    - name: deadline_time
+      type: String
+    - name: deadline_time_epoch
+      type: Float
+    - name: deadline_time_game_offset
+      type: Float
+    - name: finished
+      type: Boolean
+    - name: h_2_h_ko_matches_created
+      type: Boolean
+    - name: highest_score
+      type: Float
+    - name: highest_scoring_entry
+      type: Float
+    - name: id
+      type: Float
+    - name: is_current
+      type: Boolean
+    - name: is_next
+      type: Boolean
+    - name: is_previous
+      type: Boolean
+    - name: most_captained
+      type: Float
+    - name: most_selected
+      type: Float
+    - name: most_transferred_in
+      type: Float
+    - name: most_vice_captained
+      type: Float
+    - name: name
+      type: String
+    - name: overrides
+      type: event_overrides
+    - name: ranked_count
+      type: Float
+    - name: release_time
+      type: String
+    - name: released
+      type: Boolean
+    - name: top_element
+      type: Float
+    - name: top_element_info
+      type: event_top_element_info
+    - name: transfers_made
+      type: Float
+  graphql:
+    typeName: event
+    inputTypeName: event_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: fpl_api
+      dataConnectorObjectType: Event
+      fieldMapping:
+        average_entry_score:
+          column:
+            name: average_entry_score
+        can_enter:
+          column:
+            name: can_enter
+        can_manage:
+          column:
+            name: can_manage
+        chip_plays:
+          column:
+            name: chip_plays
+        cup_leagues_created:
+          column:
+            name: cup_leagues_created
+        data_checked:
+          column:
+            name: data_checked
+        deadline_time:
+          column:
+            name: deadline_time
+        deadline_time_epoch:
+          column:
+            name: deadline_time_epoch
+        deadline_time_game_offset:
+          column:
+            name: deadline_time_game_offset
+        finished:
+          column:
+            name: finished
+        h_2_h_ko_matches_created:
+          column:
+            name: h2h_ko_matches_created
+        highest_score:
+          column:
+            name: highest_score
+        highest_scoring_entry:
+          column:
+            name: highest_scoring_entry
+        id:
+          column:
+            name: id
+        is_current:
+          column:
+            name: is_current
+        is_next:
+          column:
+            name: is_next
+        is_previous:
+          column:
+            name: is_previous
+        most_captained:
+          column:
+            name: most_captained
+        most_selected:
+          column:
+            name: most_selected
+        most_transferred_in:
+          column:
+            name: most_transferred_in
+        most_vice_captained:
+          column:
+            name: most_vice_captained
+        name:
+          column:
+            name: name
+        overrides:
+          column:
+            name: overrides
+        ranked_count:
+          column:
+            name: ranked_count
+        release_time:
+          column:
+            name: release_time
+        released:
+          column:
+            name: released
+        top_element:
+          column:
+            name: top_element
+        top_element_info:
+          column:
+            name: top_element_info
+        transfers_made:
+          column:
+            name: transfers_made
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: event
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - average_entry_score
+          - can_enter
+          - can_manage
+          - chip_plays
+          - cup_leagues_created
+          - data_checked
+          - deadline_time
+          - deadline_time_epoch
+          - deadline_time_game_offset
+          - finished
+          - h_2_h_ko_matches_created
+          - highest_score
+          - highest_scoring_entry
+          - id
+          - is_current
+          - is_next
+          - is_previous
+          - most_captained
+          - most_selected
+          - most_transferred_in
+          - most_vice_captained
+          - name
+          - overrides
+          - ranked_count
+          - release_time
+          - released
+          - top_element
+          - top_element_info
+          - transfers_made
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: bootstrap
+  fields:
+    - name: chips
+      type: "[chip!]"
+    - name: events
+      type: "[event!]"
+  graphql:
+    typeName: bootstrap
+    inputTypeName: bootstrap_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: fpl_api
+      dataConnectorObjectType: Bootstrap
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: bootstrap
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - chips
+          - events
+
+---
+kind: Command
+version: v1
+definition:
+  name: get_bootstrap_bootstrap_list
+  outputType: bootstrap!
+  arguments:
+    - name: headers
+      type: json
+  source:
+    dataConnectorName: fpl_api
+    dataConnectorCommand:
+      function: getBootstrapBootstrapList
+  graphql:
+    rootFieldName: get_bootstrap_bootstrap_list
+    rootFieldKind: Query
+  description: Get initial FPL game data
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: get_bootstrap_bootstrap_list
+  permissions:
+    - role: admin
+      allowExecution: true
+

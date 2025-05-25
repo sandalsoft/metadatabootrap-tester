@@ -1,0 +1,331 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: CleanedPlayers
+  fields:
+    - name: assists
+      type: Int4
+    - name: bonus
+      type: Int4
+    - name: bps
+      type: Int4
+    - name: cleanSheets
+      type: Int4
+    - name: creativity
+      type: Float4
+    - name: elementType
+      type: Text
+    - name: firstName
+      type: Text
+    - name: goalsConceded
+      type: Int4
+    - name: goalsScored
+      type: Int4
+    - name: ictIndex
+      type: Float4
+    - name: influence
+      type: Float4
+    - name: minutes
+      type: Int4
+    - name: nowCost
+      type: Int4
+    - name: redCards
+      type: Int4
+    - name: secondName
+      type: Text
+    - name: selectedByPercent
+      type: Float4
+    - name: threat
+      type: Float4
+    - name: totalPoints
+      type: Int4
+    - name: yellowCards
+      type: Int4
+  graphql:
+    typeName: CleanedPlayers
+    inputTypeName: CleanedPlayersInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: fpl
+      dataConnectorObjectType: cleaned_players
+      fieldMapping:
+        assists:
+          column:
+            name: assists
+        bonus:
+          column:
+            name: bonus
+        bps:
+          column:
+            name: bps
+        cleanSheets:
+          column:
+            name: clean_sheets
+        creativity:
+          column:
+            name: creativity
+        elementType:
+          column:
+            name: element_type
+        firstName:
+          column:
+            name: first_name
+        goalsConceded:
+          column:
+            name: goals_conceded
+        goalsScored:
+          column:
+            name: goals_scored
+        ictIndex:
+          column:
+            name: ict_index
+        influence:
+          column:
+            name: influence
+        minutes:
+          column:
+            name: minutes
+        nowCost:
+          column:
+            name: now_cost
+        redCards:
+          column:
+            name: red_cards
+        secondName:
+          column:
+            name: second_name
+        selectedByPercent:
+          column:
+            name: selected_by_percent
+        threat:
+          column:
+            name: threat
+        totalPoints:
+          column:
+            name: total_points
+        yellowCards:
+          column:
+            name: yellow_cards
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: CleanedPlayers
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - assists
+          - bonus
+          - bps
+          - cleanSheets
+          - creativity
+          - elementType
+          - firstName
+          - goalsConceded
+          - goalsScored
+          - ictIndex
+          - influence
+          - minutes
+          - nowCost
+          - redCards
+          - secondName
+          - selectedByPercent
+          - threat
+          - totalPoints
+          - yellowCards
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: CleanedPlayersBoolExp
+  operand:
+    object:
+      type: CleanedPlayers
+      comparableFields:
+        - fieldName: assists
+          booleanExpressionType: Int4BoolExp
+        - fieldName: bonus
+          booleanExpressionType: Int4BoolExp
+        - fieldName: bps
+          booleanExpressionType: Int4BoolExp
+        - fieldName: cleanSheets
+          booleanExpressionType: Int4BoolExp
+        - fieldName: creativity
+          booleanExpressionType: Float4BoolExp
+        - fieldName: elementType
+          booleanExpressionType: TextBoolExp
+        - fieldName: firstName
+          booleanExpressionType: TextBoolExp
+        - fieldName: goalsConceded
+          booleanExpressionType: Int4BoolExp
+        - fieldName: goalsScored
+          booleanExpressionType: Int4BoolExp
+        - fieldName: ictIndex
+          booleanExpressionType: Float4BoolExp
+        - fieldName: influence
+          booleanExpressionType: Float4BoolExp
+        - fieldName: minutes
+          booleanExpressionType: Int4BoolExp
+        - fieldName: nowCost
+          booleanExpressionType: Int4BoolExp
+        - fieldName: redCards
+          booleanExpressionType: Int4BoolExp
+        - fieldName: secondName
+          booleanExpressionType: TextBoolExp
+        - fieldName: selectedByPercent
+          booleanExpressionType: Float4BoolExp
+        - fieldName: threat
+          booleanExpressionType: Float4BoolExp
+        - fieldName: totalPoints
+          booleanExpressionType: Int4BoolExp
+        - fieldName: yellowCards
+          booleanExpressionType: Int4BoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: CleanedPlayersBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: CleanedPlayersAggExp
+  operand:
+    object:
+      aggregatedType: CleanedPlayers
+      aggregatableFields:
+        - fieldName: assists
+          aggregateExpression: Int4AggExp
+        - fieldName: bonus
+          aggregateExpression: Int4AggExp
+        - fieldName: bps
+          aggregateExpression: Int4AggExp
+        - fieldName: cleanSheets
+          aggregateExpression: Int4AggExp
+        - fieldName: creativity
+          aggregateExpression: Float4AggExp
+        - fieldName: elementType
+          aggregateExpression: TextAggExp
+        - fieldName: firstName
+          aggregateExpression: TextAggExp
+        - fieldName: goalsConceded
+          aggregateExpression: Int4AggExp
+        - fieldName: goalsScored
+          aggregateExpression: Int4AggExp
+        - fieldName: ictIndex
+          aggregateExpression: Float4AggExp
+        - fieldName: influence
+          aggregateExpression: Float4AggExp
+        - fieldName: minutes
+          aggregateExpression: Int4AggExp
+        - fieldName: nowCost
+          aggregateExpression: Int4AggExp
+        - fieldName: redCards
+          aggregateExpression: Int4AggExp
+        - fieldName: secondName
+          aggregateExpression: TextAggExp
+        - fieldName: selectedByPercent
+          aggregateExpression: Float4AggExp
+        - fieldName: threat
+          aggregateExpression: Float4AggExp
+        - fieldName: totalPoints
+          aggregateExpression: Int4AggExp
+        - fieldName: yellowCards
+          aggregateExpression: Int4AggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: CleanedPlayersAggExp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: CleanedPlayersOrderByExp
+  operand:
+    object:
+      orderedType: CleanedPlayers
+      orderableFields:
+        - fieldName: assists
+          orderByExpression: Int4OrderByExp
+        - fieldName: bonus
+          orderByExpression: Int4OrderByExp
+        - fieldName: bps
+          orderByExpression: Int4OrderByExp
+        - fieldName: cleanSheets
+          orderByExpression: Int4OrderByExp
+        - fieldName: creativity
+          orderByExpression: Float4OrderByExp
+        - fieldName: elementType
+          orderByExpression: TextOrderByExp
+        - fieldName: firstName
+          orderByExpression: TextOrderByExp
+        - fieldName: goalsConceded
+          orderByExpression: Int4OrderByExp
+        - fieldName: goalsScored
+          orderByExpression: Int4OrderByExp
+        - fieldName: ictIndex
+          orderByExpression: Float4OrderByExp
+        - fieldName: influence
+          orderByExpression: Float4OrderByExp
+        - fieldName: minutes
+          orderByExpression: Int4OrderByExp
+        - fieldName: nowCost
+          orderByExpression: Int4OrderByExp
+        - fieldName: redCards
+          orderByExpression: Int4OrderByExp
+        - fieldName: secondName
+          orderByExpression: TextOrderByExp
+        - fieldName: selectedByPercent
+          orderByExpression: Float4OrderByExp
+        - fieldName: threat
+          orderByExpression: Float4OrderByExp
+        - fieldName: totalPoints
+          orderByExpression: Int4OrderByExp
+        - fieldName: yellowCards
+          orderByExpression: Int4OrderByExp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: CleanedPlayersOrderByExp
+
+---
+kind: Model
+version: v2
+definition:
+  name: CleanedPlayers
+  objectType: CleanedPlayers
+  source:
+    dataConnectorName: fpl
+    collection: cleaned_players
+  filterExpressionType: CleanedPlayersBoolExp
+  aggregateExpression: CleanedPlayersAggExp
+  orderByExpression: CleanedPlayersOrderByExp
+  graphql:
+    selectMany:
+      queryRootField: cleanedPlayers
+      subscription:
+        rootField: cleanedPlayers
+    selectUniques: []
+    filterInputTypeName: CleanedPlayersFilterInput
+    aggregate:
+      queryRootField: cleanedPlayersAggregate
+      subscription:
+        rootField: cleanedPlayersAggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: CleanedPlayers
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

@@ -1,0 +1,307 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Fixtures
+  fields:
+    - name: code
+      type: Int4
+    - name: event
+      type: Int4
+    - name: finished
+      type: Bool
+    - name: finishedProvisional
+      type: Bool
+    - name: id
+      type: Int4
+    - name: kickoffTime
+      type: Timestamp
+    - name: minutes
+      type: Int4
+    - name: provisionalStartTime
+      type: Bool
+    - name: pulseId
+      type: Int4
+    - name: started
+      type: Bool
+    - name: stats
+      type: Text
+    - name: teamA
+      type: Int4
+    - name: teamADifficulty
+      type: Int4
+    - name: teamAScore
+      type: Float4
+    - name: teamH
+      type: Int4
+    - name: teamHDifficulty
+      type: Int4
+    - name: teamHScore
+      type: Float4
+  graphql:
+    typeName: Fixtures
+    inputTypeName: FixturesInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: fpl
+      dataConnectorObjectType: fixtures
+      fieldMapping:
+        code:
+          column:
+            name: code
+        event:
+          column:
+            name: event
+        finished:
+          column:
+            name: finished
+        finishedProvisional:
+          column:
+            name: finished_provisional
+        id:
+          column:
+            name: id
+        kickoffTime:
+          column:
+            name: kickoff_time
+        minutes:
+          column:
+            name: minutes
+        provisionalStartTime:
+          column:
+            name: provisional_start_time
+        pulseId:
+          column:
+            name: pulse_id
+        started:
+          column:
+            name: started
+        stats:
+          column:
+            name: stats
+        teamA:
+          column:
+            name: team_a
+        teamADifficulty:
+          column:
+            name: team_a_difficulty
+        teamAScore:
+          column:
+            name: team_a_score
+        teamH:
+          column:
+            name: team_h
+        teamHDifficulty:
+          column:
+            name: team_h_difficulty
+        teamHScore:
+          column:
+            name: team_h_score
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Fixtures
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - code
+          - event
+          - finished
+          - finishedProvisional
+          - id
+          - kickoffTime
+          - minutes
+          - provisionalStartTime
+          - pulseId
+          - started
+          - stats
+          - teamA
+          - teamADifficulty
+          - teamAScore
+          - teamH
+          - teamHDifficulty
+          - teamHScore
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: FixturesBoolExp
+  operand:
+    object:
+      type: Fixtures
+      comparableFields:
+        - fieldName: code
+          booleanExpressionType: Int4BoolExp
+        - fieldName: event
+          booleanExpressionType: Int4BoolExp
+        - fieldName: finished
+          booleanExpressionType: BoolBoolExp
+        - fieldName: finishedProvisional
+          booleanExpressionType: BoolBoolExp
+        - fieldName: id
+          booleanExpressionType: Int4BoolExp
+        - fieldName: kickoffTime
+          booleanExpressionType: TimestampBoolExp
+        - fieldName: minutes
+          booleanExpressionType: Int4BoolExp
+        - fieldName: provisionalStartTime
+          booleanExpressionType: BoolBoolExp
+        - fieldName: pulseId
+          booleanExpressionType: Int4BoolExp
+        - fieldName: started
+          booleanExpressionType: BoolBoolExp
+        - fieldName: stats
+          booleanExpressionType: TextBoolExp
+        - fieldName: teamA
+          booleanExpressionType: Int4BoolExp
+        - fieldName: teamADifficulty
+          booleanExpressionType: Int4BoolExp
+        - fieldName: teamAScore
+          booleanExpressionType: Float4BoolExp
+        - fieldName: teamH
+          booleanExpressionType: Int4BoolExp
+        - fieldName: teamHDifficulty
+          booleanExpressionType: Int4BoolExp
+        - fieldName: teamHScore
+          booleanExpressionType: Float4BoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: FixturesBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: FixturesAggExp
+  operand:
+    object:
+      aggregatedType: Fixtures
+      aggregatableFields:
+        - fieldName: code
+          aggregateExpression: Int4AggExp
+        - fieldName: event
+          aggregateExpression: Int4AggExp
+        - fieldName: finished
+          aggregateExpression: BoolAggExp
+        - fieldName: finishedProvisional
+          aggregateExpression: BoolAggExp
+        - fieldName: id
+          aggregateExpression: Int4AggExp
+        - fieldName: kickoffTime
+          aggregateExpression: TimestampAggExp
+        - fieldName: minutes
+          aggregateExpression: Int4AggExp
+        - fieldName: provisionalStartTime
+          aggregateExpression: BoolAggExp
+        - fieldName: pulseId
+          aggregateExpression: Int4AggExp
+        - fieldName: started
+          aggregateExpression: BoolAggExp
+        - fieldName: stats
+          aggregateExpression: TextAggExp
+        - fieldName: teamA
+          aggregateExpression: Int4AggExp
+        - fieldName: teamADifficulty
+          aggregateExpression: Int4AggExp
+        - fieldName: teamAScore
+          aggregateExpression: Float4AggExp
+        - fieldName: teamH
+          aggregateExpression: Int4AggExp
+        - fieldName: teamHDifficulty
+          aggregateExpression: Int4AggExp
+        - fieldName: teamHScore
+          aggregateExpression: Float4AggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: FixturesAggExp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: FixturesOrderByExp
+  operand:
+    object:
+      orderedType: Fixtures
+      orderableFields:
+        - fieldName: code
+          orderByExpression: Int4OrderByExp
+        - fieldName: event
+          orderByExpression: Int4OrderByExp
+        - fieldName: finished
+          orderByExpression: BoolOrderByExp
+        - fieldName: finishedProvisional
+          orderByExpression: BoolOrderByExp
+        - fieldName: id
+          orderByExpression: Int4OrderByExp
+        - fieldName: kickoffTime
+          orderByExpression: TimestampOrderByExp
+        - fieldName: minutes
+          orderByExpression: Int4OrderByExp
+        - fieldName: provisionalStartTime
+          orderByExpression: BoolOrderByExp
+        - fieldName: pulseId
+          orderByExpression: Int4OrderByExp
+        - fieldName: started
+          orderByExpression: BoolOrderByExp
+        - fieldName: stats
+          orderByExpression: TextOrderByExp
+        - fieldName: teamA
+          orderByExpression: Int4OrderByExp
+        - fieldName: teamADifficulty
+          orderByExpression: Int4OrderByExp
+        - fieldName: teamAScore
+          orderByExpression: Float4OrderByExp
+        - fieldName: teamH
+          orderByExpression: Int4OrderByExp
+        - fieldName: teamHDifficulty
+          orderByExpression: Int4OrderByExp
+        - fieldName: teamHScore
+          orderByExpression: Float4OrderByExp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: FixturesOrderByExp
+
+---
+kind: Model
+version: v2
+definition:
+  name: Fixtures
+  objectType: Fixtures
+  source:
+    dataConnectorName: fpl
+    collection: fixtures
+  filterExpressionType: FixturesBoolExp
+  aggregateExpression: FixturesAggExp
+  orderByExpression: FixturesOrderByExp
+  graphql:
+    selectMany:
+      queryRootField: fixtures
+      subscription:
+        rootField: fixtures
+    selectUniques: []
+    filterInputTypeName: FixturesFilterInput
+    aggregate:
+      queryRootField: fixturesAggregate
+      subscription:
+        rootField: fixturesAggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Fixtures
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+

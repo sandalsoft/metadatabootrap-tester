@@ -1,0 +1,475 @@
+kind: DataConnectorLink
+version: v1
+definition:
+  name: fpl_api
+  url:
+    readWriteUrls:
+      read:
+        valueFromEnv: APP_FPL_API_READ_URL
+      write:
+        valueFromEnv: APP_FPL_API_WRITE_URL
+  headers:
+    Authorization:
+      valueFromEnv: APP_FPL_API_AUTHORIZATION_HEADER
+  schema:
+    version: v0.1
+    schema:
+      scalar_types:
+        '"transfer" | "team"':
+          aggregate_functions: {}
+          comparison_operators: {}
+        Boolean:
+          representation:
+            type: boolean
+          aggregate_functions: {}
+          comparison_operators:
+            _eq:
+              type: equal
+        Float:
+          representation:
+            type: float64
+          aggregate_functions: {}
+          comparison_operators:
+            _eq:
+              type: equal
+        JSON:
+          representation:
+            type: json
+          aggregate_functions: {}
+          comparison_operators: {}
+        String:
+          representation:
+            type: string
+          aggregate_functions: {}
+          comparison_operators:
+            _eq:
+              type: equal
+      object_types:
+        Bootstrap:
+          fields:
+            chips:
+              type:
+                type: nullable
+                underlying_type:
+                  element_type:
+                    name: Chip
+                    type: named
+                  type: array
+            events:
+              type:
+                type: nullable
+                underlying_type:
+                  element_type:
+                    name: Event
+                    type: named
+                  type: array
+        Chip:
+          fields:
+            chip_type:
+              type:
+                type: nullable
+                underlying_type:
+                  name: '"transfer" | "team"'
+                  type: named
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+            name:
+              type:
+                type: nullable
+                underlying_type:
+                  name: String
+                  type: named
+            number:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+            overrides:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Chip_overrides
+                  type: named
+            start_event:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+            stop_event:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+        Chip_overrides:
+          fields:
+            element_types:
+              type:
+                type: nullable
+                underlying_type:
+                  element_type:
+                    name: ElementType
+                    type: named
+                  type: array
+            pick_multiplier:
+              type:
+                type: nullable
+                underlying_type:
+                  name: String
+                  type: named
+            rules:
+              type:
+                type: nullable
+                underlying_type:
+                  name: JSON
+                  type: named
+            scoring:
+              type:
+                type: nullable
+                underlying_type:
+                  name: JSON
+                  type: named
+        ElementType:
+          fields:
+            element_count:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+            plural_name:
+              type:
+                type: nullable
+                underlying_type:
+                  name: String
+                  type: named
+            plural_name_short:
+              type:
+                type: nullable
+                underlying_type:
+                  name: String
+                  type: named
+            singular_name:
+              type:
+                type: nullable
+                underlying_type:
+                  name: String
+                  type: named
+            singular_name_short:
+              type:
+                type: nullable
+                underlying_type:
+                  name: String
+                  type: named
+            squad_max_play:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+            squad_max_select:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+            squad_min_play:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+            squad_min_select:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+            squad_select:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+            sub_positions_locked:
+              type:
+                type: nullable
+                underlying_type:
+                  element_type:
+                    name: Float
+                    type: named
+                  type: array
+            ui_shirt_specific:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Boolean
+                  type: named
+        Event:
+          fields:
+            average_entry_score:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+            can_enter:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Boolean
+                  type: named
+            can_manage:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Boolean
+                  type: named
+            chip_plays:
+              type:
+                type: nullable
+                underlying_type:
+                  element_type:
+                    name: array
+                    type: named
+                  type: array
+            cup_leagues_created:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Boolean
+                  type: named
+            data_checked:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Boolean
+                  type: named
+            deadline_time:
+              type:
+                type: nullable
+                underlying_type:
+                  name: String
+                  type: named
+            deadline_time_epoch:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+            deadline_time_game_offset:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+            finished:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Boolean
+                  type: named
+            h2h_ko_matches_created:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Boolean
+                  type: named
+            highest_score:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+            highest_scoring_entry:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+            is_current:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Boolean
+                  type: named
+            is_next:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Boolean
+                  type: named
+            is_previous:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Boolean
+                  type: named
+            most_captained:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+            most_selected:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+            most_transferred_in:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+            most_vice_captained:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+            name:
+              type:
+                type: nullable
+                underlying_type:
+                  name: String
+                  type: named
+            overrides:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Event_overrides
+                  type: named
+            ranked_count:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+            release_time:
+              type:
+                type: nullable
+                underlying_type:
+                  name: String
+                  type: named
+            released:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Boolean
+                  type: named
+            top_element:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+            top_element_info:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Event_top_element_info
+                  type: named
+            transfers_made:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+        Event_overrides:
+          fields:
+            element_types:
+              type:
+                type: nullable
+                underlying_type:
+                  element_type:
+                    name: JSON
+                    type: named
+                  type: array
+            pick_multiplier:
+              type:
+                type: nullable
+                underlying_type:
+                  name: String
+                  type: named
+            rules:
+              type:
+                type: nullable
+                underlying_type:
+                  name: JSON
+                  type: named
+            scoring:
+              type:
+                type: nullable
+                underlying_type:
+                  name: JSON
+                  type: named
+        Event_top_element_info:
+          fields:
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+            points:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+        array:
+          fields:
+            chip_name:
+              type:
+                type: nullable
+                underlying_type:
+                  name: String
+                  type: named
+            num_played:
+              type:
+                type: nullable
+                underlying_type:
+                  name: Float
+                  type: named
+      collections: []
+      functions:
+        - name: getBootstrapBootstrapList
+          description: Get initial FPL game data
+          arguments:
+            headers:
+              type:
+                type: nullable
+                underlying_type:
+                  name: JSON
+                  type: named
+          result_type:
+            name: Bootstrap
+            type: named
+      procedures: []
+    capabilities:
+      version: 0.1.6
+      capabilities:
+        query:
+          variables: {}
+          nested_fields: {}
+        mutation: {}
